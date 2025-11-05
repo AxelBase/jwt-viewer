@@ -1,0 +1,96 @@
+<script lang="ts">
+  import { base } from '$app/paths';
+</script>
+
+<svelte:head>
+  <title>Privacy Policy | AxelBase JWT Viewer</title>
+  <meta
+    name="description"
+    content="We collect zero data. Your JWTs never leave your browser. 100% client-side, no tracking, no logs."
+  />
+  <meta property="og:title" content="Privacy Policy | AxelBase JWT Viewer" />
+  <meta
+    property="og:description"
+    content="We collect zero data. Your JWTs never leave your browser. 100% client-side, no tracking, no logs."
+  />
+  <meta property="og:url" content={`${base}/privacy`} />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+</svelte:head>
+
+<div class="container fade-in post-layout">
+  <div class="breadcrumbs">
+    <a href={`${base}/`}>Home</a>
+    <span>/</span>
+    <p>Privacy Policy</p>
+  </div>
+
+  <article class="prose">
+    <h1>Privacy Policy</h1>
+    <p class="post-meta">Effective Date: November 5, 2025</p>
+
+    <h2>1. Our Commitment to Privacy</h2>
+    <p>
+      Welcome to the <strong>AxelBase JWT Header & Payload Viewer</strong> ("the Tool"), a <strong>100% client-side</strong>,
+      open-source web application. We believe in <strong>absolute privacy</strong> — which is why
+      <em>we collect no data, track no users, and store nothing</em>. This Privacy Policy explains how your information
+      is handled when using our Tool.
+    </p>
+
+    <h2>2. No Data Is Collected</h2>
+    <p><strong>We do not collect, store, or transmit any information</strong> from your use of the Tool. Specifically:</p>
+    <ul>
+      <li><strong>JWT Tokens</strong>: Never sent to servers. Decoded entirely in your browser using <code>atob()</code> and <code>JSON.parse()</code>.</li>
+      <li><strong>Personal Data</strong>: No names, emails, IP addresses, or device info are recorded.</li>
+      <li><strong>Usage Analytics</strong>: No Google Analytics, cookies, localStorage persistence, or tracking pixels.</li>
+      <li><strong>Logs</strong>: No server-side logging. The Tool runs statically via GitHub Pages.</li>
+    </ul>
+    <p>Your JWTs remain <strong>on your device only</strong>. We have <strong>zero access</strong> to them.</p>
+
+    <h2>3. How the Tool Operates</h2>
+    <p>The JWT Viewer is a <strong>static single-page app</strong> built with SvelteKit:</p>
+    <ul>
+      <li><strong>Input</strong>: You paste a JWT into the textarea.</li>
+      <li><strong>Processing</strong>: JavaScript splits, decodes, and parses the token locally.</li>
+      <li><strong>Output</strong>: Header and payload are displayed with formatting and copy buttons.</li>
+      <li><strong>Clear</strong>: All data is wiped on "Clear" or page refresh.</li>
+    </ul>
+    <p>No network requests are made after initial page load (except Bootstrap CDN for styling).</p>
+
+    <h2>4. Third-Party Services</h2>
+    <p>We use <strong>only one external resource</strong>:</p>
+    <ul>
+      <li><strong>Bootstrap 5 CDN</strong>: For styling. It does <strong>not</strong> track users or set cookies in this context.</li>
+    </ul>
+    <p>No analytics, ads, or social embeds are included.</p>
+
+    <h2>5. Cookies & Local Storage</h2>
+    <p><strong>No cookies are used</strong>. The Tool is <strong>stateless</strong>. Temporary data (your JWT) exists only in memory during use and is <strong>cleared on refresh</strong>.</p>
+
+    <h2>6. Data Security</h2>
+    <p>Since no data leaves your browser, security is inherent. We recommend:</p>
+    <ul>
+      <li>Using the Tool in <strong>private/incognito mode</strong> for extra caution.</li>
+      <li>Avoiding copy-paste of production secrets into shared environments.</li>
+      <li>Keeping your browser updated.</li>
+    </ul>
+
+    <h2>7. Children's Privacy</h2>
+    <p>The Tool is not directed at children under 13. We do not knowingly collect data from minors.</p>
+
+    <h2>8. Global Compliance</h2>
+    <p>Because <strong>no data is processed</strong>, the Tool complies by default with <strong>GDPR</strong>, <strong>CCPA</strong>, <strong>LGPD</strong>, and other privacy laws.</p>
+
+    <h2>9. Changes to This Policy</h2>
+    <p>We may update this policy. Changes will be reflected here with the new effective date.</p>
+
+    <h2>10. Contact</h2>
+    <p>For questions, open an issue on our <a href="https://github.com/axelbase/jwt-viewer" target="_blank" rel="noopener">GitHub repository</a>.</p>
+
+    <p class="italic-note"><strong>Your privacy is non-negotiable</strong>. Decode JWTs with confidence — nothing is watched, nothing is saved.</p>
+  </article>
+</div>
+
+<style>
+  /* Inherits from global .prose styles */
+</style>
