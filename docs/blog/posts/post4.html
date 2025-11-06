@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="theme-color" content="#0d6efd" />
+
     <title>AxelBase – JWT Header & Payload Viewer</title>
     <link rel="icon" href="../../AxelLab-Logo.ico" />
 
@@ -16,30 +19,35 @@
 
     
 		<link href="../../_app/immutable/assets/0.5x_xSm61.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../_app/immutable/entry/start.CY8SU0tX.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Cx1Us-46.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Y_y87twW.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BGA5TNFn.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CkRaryMP.js">
-		<link rel="modulepreload" href="../../_app/immutable/entry/app.B4lHzDYK.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BXXJdfyG.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CQKq4XYX.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CrzrGUbh.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/0.CfXuiURD.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/DOGrH6OB.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CD7uLGPR.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/uOPJYegi.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BF4hkOU8.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Jp5pbPk0.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/7.DbFV6fOP.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BUKLBh0t.js"><!--12qhfyh--><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script><!----><!--led0iy--><meta name="description" content="A complete guide to standard JWT claims like iss, sub, exp, iat, and how the viewer helps you understand them."/> <meta property="og:title" content="Common JWT Claims and Their Meanings | AxelBase Blog"/> <meta property="og:description" content="A complete guide to standard JWT claims like iss, sub, exp, iat, and how the viewer helps you understand them."/> <meta property="og:url" content="../../blog/posts/post4"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>Common JWT Claims and Their Meanings | AxelBase Blog</title>
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.BbKpkIo-.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/ChxBWd9W.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/5PdmOsKK.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/iQz03bY6.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/pBA0a1Lq.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.BYr8vxK9.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CzK_bswD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DKlPZc4F.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BKjikVp1.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.PBrkf2dx.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Cdz7LPPN.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/vYUN2wj5.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/w2h87oVe.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/kzdWQNaX.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/7.16zhyOuj.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BUKLBh0t.js"><!--12qhfyh--><link rel="canonical" href="https://axelbase.github.io../.."/> <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>  <meta name="description" content="Free client-side JWT Header &amp; Payload Viewer. Decode JSON Web Tokens safely in your browser with zero data sent to servers."/> <script type="application/ld+json">
+    {JSON.stringify(organizationSchema)}
+  </script><!----><!--led0iy--><meta name="description" content="Learn step-by-step how to safely decode JWTs using the AxelBase JWT Viewer — from input to interpretation of claims."/> <meta property="og:title" content="How to Use the JWT Header &amp; Payload Viewer Effectively | AxelBase Blog"/> <meta property="og:description" content="Learn step-by-step how to safely decode JWTs using the AxelBase JWT Viewer — from input to interpretation of claims."/> <meta property="og:url" content="../../blog/posts/post4"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>How to Use the JWT Header &amp; Payload Viewer Effectively | AxelBase Blog</title>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div><!--[--><!--[--><!----><div class="app-container svelte-12qhfyh"><header class="sticky-nav svelte-12qhfyh"><div class="navbar-container svelte-12qhfyh"><div class="navbar-left svelte-12qhfyh"><a href="../../" class="navbar-logo svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="AxelBase Logo" class="svelte-12qhfyh"/> <span class="navbar-brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-wrapper svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z"></path></svg> <span>Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <nav class="navbar-right svelte-12qhfyh"><ul class="svelte-12qhfyh"><li><a href="../../" class="svelte-12qhfyh">Home</a></li> <li><a href="../../#about" class="svelte-12qhfyh">About</a></li> <li><a href="../../#how-to-use" class="svelte-12qhfyh">How to use</a></li> <li><a href="../../#faq" class="svelte-12qhfyh">FAQ</a></li> <li><a href="../../blog" class="svelte-12qhfyh">Blog</a></li></ul></nav></div></header> <main class="main-content svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout"><div class="breadcrumbs"><a href="../../blog">Blog</a> <span>/</span> <p>Common JWT Claims</p></div> <article class="prose"><h1>Common JWT Claims and Their Meanings</h1> <p class="post-meta">Published: November 8, 2025</p> <p>JSON Web Tokens (JWTs) carry information in the form of <strong>claims</strong> — key-value pairs in the payload. Understanding these claims is essential for debugging authentication, enforcing access control, and ensuring token validity. The <strong>JWT Header &amp; Payload Viewer</strong> highlights all standard claims with human-readable formatting.</p> <h2>Registered Claims (Standard)</h2> <p>These are defined in the <a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4.1" target="_blank" rel="noopener">JWT specification</a> and have reserved names:</p> <h3><code>iss</code> – Issuer</h3> <p>Identifies the principal that issued the JWT. Usually a URL or unique identifier.</p> <pre><code>"iss": "https://auth.axelbase.com"</code></pre> <h3><code>sub</code> – Subject</h3> <p>The user or entity the token represents. Often a user ID or email.</p> <pre><code>"sub": "user_12345"</code></pre> <h3><code>aud</code> – Audience</h3> <p>Defines intended recipients. Can be a string or array. Your API should validate this.</p> <pre><code>"aud": ["api:read", "api:write"]</code></pre> <h3><code>exp</code> – Expiration Time</h3> <p>Unix timestamp when the token expires. Critical for security.</p> <p><strong>Viewer Feature</strong>: Converted to UTC date + “Valid/Expired” badge.</p> <h3><code>nbf</code> – Not Before</h3> <p>Token is not valid before this time. Useful for delayed activation.</p> <h3><code>iat</code> – Issued At</h3> <p>When the token was created. Helps calculate age.</p> <h3><code>jti</code> – JWT ID</h3> <p>Unique identifier to prevent replay attacks.</p> <h2>Public &amp; Private Claims</h2> <p>Beyond standards, you can add:</p> <ul><li><code>role</code>: <code>"admin"</code></li> <li><code>permissions</code>: <code>["dashboard:view"]</code></li> <li><code>tenant_id</code>: <code>"org_789"</code></li></ul> <h3>Best Practices</h3> <ul><li>Keep payload small (&lt; 4KB)</li> <li>Avoid sensitive data (e.g., passwords)</li> <li>Use <code>jti</code> + revocation list</li> <li>Validate <code>iss</code> and <code>aud</code> server-side</li></ul> <h2>How the Viewer Helps</h2> <p>Paste any JWT → instantly see:</p> <ul><li>All claims in pretty-printed JSON</li> <li>Timestamps in UTC</li> <li>Expiration status</li> <li>Copy-ready output</li></ul> <h2>FAQ</h2> <details><summary>Should I trust <code>sub</code> for authorization?</summary> <p>No. Always verify identity server-side using signature and <code>iss</code>.</p></details> <details><summary>Can <code>aud</code> be multiple values?</summary> <p>Yes. Use an array. Your API must check membership.</p></details> <details><summary>What if <code>exp</code> is missing?</summary> <p>Token never expires — a security risk. Always set it.</p></details> <p class="italic-note">Know your claims. Secure your tokens.</p></article></div><!----><!--]--></main> <footer class="sticky-footer svelte-12qhfyh"><span>© 2025 AxelBase JWT Viewer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy Policy</a> <a href="../../terms" class="svelte-12qhfyh">Terms and Conditions</a></div></footer></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+    <div><!--[--><!--[--><!----><div class="app-container svelte-12qhfyh"><header class="sticky-nav svelte-12qhfyh"><div class="navbar-container svelte-12qhfyh"><div class="navbar-left svelte-12qhfyh"><a href="../../" class="navbar-logo svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="AxelBase Logo" class="svelte-12qhfyh"/> <span class="navbar-brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-wrapper svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z"></path></svg> <span>Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <nav class="navbar-right svelte-12qhfyh"><ul class="svelte-12qhfyh"><li><a href="../../" class="svelte-12qhfyh">Home</a></li> <li><a href="../../#about" class="svelte-12qhfyh">About</a></li> <li><a href="../../#how-to-use" class="svelte-12qhfyh">How to use</a></li> <li><a href="../../#faq" class="svelte-12qhfyh">FAQ</a></li> <li><a href="../../blog" class="svelte-12qhfyh">Blog</a></li></ul></nav></div></header> <main class="main-content svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout"><div class="breadcrumbs"><a href="../../blog">Blog</a> <span>/</span> <p>How to Use the JWT Header &amp; Payload Viewer Effectively</p></div> <article class="prose"><h1>How to Use the JWT Header &amp; Payload Viewer Effectively</h1> <p class="post-meta">Published: November 6, 2025</p> <p>Using the <strong>JWT Header &amp; Payload Viewer</strong> is simple — but understanding how to interpret what you see is where the tool shines. Below is a quick walkthrough for developers and security testers.</p> <h2>1. Paste or Drop Your Token</h2> <p>Open the viewer and paste your JWT (e.g. <code>eyJhbGciOi...</code>) into the input box. The token will automatically decode into two JSON panels — one for the header and one for the payload.</p> <h2>2. Examine the Header</h2> <p>The header reveals the algorithm and type. Check that the algorithm matches your system’s expectations — e.g., <code>RS256</code> for asymmetric signing or <code>HS256</code> for HMAC-based signing.</p> <h2>3. Review the Payload</h2> <p>The payload lists claims such as <code>sub</code> (subject), <code>exp</code> (expiration), and custom data. Expiration times are auto-converted into UTC for readability.</p> <h2>4. Copy What You Need</h2> <p>Use the copy buttons to export header or payload JSON to your clipboard. This is especially useful for debugging, documenting API responses, or validating tokens in Postman.</p> <h2>5. Keep It Private</h2> <p>Remember — no data is ever sent out. All decoding happens locally. You can safely use this tool in corporate environments or offline workflows.</p> <h2>Example Session</h2> <pre><code>Header:
+{ "alg": "RS256", "typ": "JWT" }
+
+Payload:
+{ "sub": "42", "role": "developer", "exp": 1738867200 }</code></pre> <p class="italic-note">Fast, private, transparent — that’s what modern JWT debugging should be.</p></article></div><!----><!--]--></main> <footer class="sticky-footer svelte-12qhfyh"><span>© 2025 AxelBase JWT Viewer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy Policy</a> <a href="../../terms" class="svelte-12qhfyh">Terms and Conditions</a></div></footer></div><!----><!--]--> <!--[!--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1l68tha = {
+					__sveltekit_kzrpoy = {
 						base: new URL("../..", location).pathname.slice(0, -1),
 						assets: "/jwt-viewer"
 					};
@@ -47,8 +55,8 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../../_app/immutable/entry/start.CY8SU0tX.js"),
-						import("../../_app/immutable/entry/app.B4lHzDYK.js")
+						import("../../_app/immutable/entry/start.BbKpkIo-.js"),
+						import("../../_app/immutable/entry/app.BYr8vxK9.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 7],

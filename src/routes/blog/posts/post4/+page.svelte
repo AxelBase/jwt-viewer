@@ -3,15 +3,13 @@
   import { onMount } from 'svelte';
   import { browser } from '$lib/browser';
 
-  // ---------- ONLY THIS PART CHANGES ----------
+  // ---------- Copy block ----------
   let copyHeader = '';
   let copyPayload = '';
 
-  // Fill the variables with the JSON you want to copy
   $: if (browser) {
-    // Example – replace with your real header/payload objects
-    copyHeader = JSON.stringify({ alg: 'HS256', typ: 'JWT' }, null, 2);
-    copyPayload = JSON.stringify({ sub: '123', name: 'John' }, null, 2);
+    copyHeader = JSON.stringify({ alg: 'ES256', typ: 'JWT' }, null, 2);
+    copyPayload = JSON.stringify({ sub: '789', role: 'admin' }, null, 2);
   }
 
   let copyBtnText = 'Copy';
@@ -26,14 +24,14 @@
       alert('Copy failed – use Ctrl+C');
     }
   };
-  // -------------------------------------------
-
+  // --------------------------------
 </script>
+
 <svelte:head>
-  <title>Common JWT Claims and Their Meanings | AxelBase Blog</title>
-  <meta name="description" content="A complete guide to standard JWT claims like iss, sub, exp, iat, and how the viewer helps you understand them." />
-  <meta property="og:title" content="Common JWT Claims and Their Meanings | AxelBase Blog" />
-  <meta property="og:description" content="A complete guide to standard JWT claims like iss, sub, exp, iat, and how the viewer helps you understand them." />
+  <title>How to Use the JWT Header & Payload Viewer Effectively | AxelBase Blog</title>
+  <meta name="description" content="Learn step-by-step how to safely decode JWTs using the AxelBase JWT Viewer — from input to interpretation of claims." />
+  <meta property="og:title" content="How to Use the JWT Header & Payload Viewer Effectively | AxelBase Blog" />
+  <meta property="og:description" content="Learn step-by-step how to safely decode JWTs using the AxelBase JWT Viewer — from input to interpretation of claims." />
   <meta property="og:url" content="{base}/blog/posts/post4" />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -43,82 +41,37 @@
   <div class="breadcrumbs">
     <a href="{base}/blog">Blog</a>
     <span>/</span>
-    <p>Common JWT Claims</p>
+    <p>How to Use the JWT Header & Payload Viewer Effectively</p>
   </div>
 
   <article class="prose">
-    <h1>Common JWT Claims and Their Meanings</h1>
-    <p class="post-meta">Published: November 8, 2025</p>
+    <h1>How to Use the JWT Header & Payload Viewer Effectively</h1>
+    <p class="post-meta">Published: November 6, 2025</p>
 
-    <p>JSON Web Tokens (JWTs) carry information in the form of <strong>claims</strong> — key-value pairs in the payload. Understanding these claims is essential for debugging authentication, enforcing access control, and ensuring token validity. The <strong>JWT Header & Payload Viewer</strong> highlights all standard claims with human-readable formatting.</p>
+    <p>Using the <strong>JWT Header & Payload Viewer</strong> is simple — but understanding how to interpret what you see is where the tool shines. Below is a quick walkthrough for developers and security testers.</p>
 
-    <h2>Registered Claims (Standard)</h2>
-    <p>These are defined in the <a href="https://datatracker.ietf.org/doc/html/rfc7519#section-4.1" target="_blank" rel="noopener">JWT specification</a> and have reserved names:</p>
+    <h2>1. Paste or Drop Your Token</h2>
+    <p>Open the viewer and paste your JWT (e.g. <code>eyJhbGciOi...</code>) into the input box. The token will automatically decode into two JSON panels — one for the header and one for the payload.</p>
 
-    <h3><code>iss</code> – Issuer</h3>
-    <p>Identifies the principal that issued the JWT. Usually a URL or unique identifier.</p>
-    <pre><code>"iss": "https://auth.axelbase.com"</code></pre>
+    <h2>2. Examine the Header</h2>
+    <p>The header reveals the algorithm and type. Check that the algorithm matches your system’s expectations — e.g., <code>RS256</code> for asymmetric signing or <code>HS256</code> for HMAC-based signing.</p>
 
-    <h3><code>sub</code> – Subject</h3>
-    <p>The user or entity the token represents. Often a user ID or email.</p>
-    <pre><code>"sub": "user_12345"</code></pre>
+    <h2>3. Review the Payload</h2>
+    <p>The payload lists claims such as <code>sub</code> (subject), <code>exp</code> (expiration), and custom data. Expiration times are auto-converted into UTC for readability.</p>
 
-    <h3><code>aud</code> – Audience</h3>
-    <p>Defines intended recipients. Can be a string or array. Your API should validate this.</p>
-    <pre><code>"aud": ["api:read", "api:write"]</code></pre>
+    <h2>4. Copy What You Need</h2>
+    <p>Use the copy buttons to export header or payload JSON to your clipboard. This is especially useful for debugging, documenting API responses, or validating tokens in Postman.</p>
 
-    <h3><code>exp</code> – Expiration Time</h3>
-    <p>Unix timestamp when the token expires. Critical for security.</p>
-    <p><strong>Viewer Feature</strong>: Converted to UTC date + “Valid/Expired” badge.</p>
+    <h2>5. Keep It Private</h2>
+    <p>Remember — no data is ever sent out. All decoding happens locally. You can safely use this tool in corporate environments or offline workflows.</p>
 
-    <h3><code>nbf</code> – Not Before</h3>
-    <p>Token is not valid before this time. Useful for delayed activation.</p>
+    <h2>Example Session</h2>
+    <pre><code>{`Header:
+{ "alg": "RS256", "typ": "JWT" }
 
-    <h3><code>iat</code> – Issued At</h3>
-    <p>When the token was created. Helps calculate age.</p>
+Payload:
+{ "sub": "42", "role": "developer", "exp": 1738867200 }`}</code></pre>
 
-    <h3><code>jti</code> – JWT ID</h3>
-    <p>Unique identifier to prevent replay attacks.</p>
-
-    <h2>Public & Private Claims</h2>
-    <p>Beyond standards, you can add:</p>
-    <ul>
-      <li><code>role</code>: <code>"admin"</code></li>
-      <li><code>permissions</code>: <code>["dashboard:view"]</code></li>
-      <li><code>tenant_id</code>: <code>"org_789"</code></li>
-    </ul>
-
-    <h3>Best Practices</h3>
-    <ul>
-      <li>Keep payload small (&lt; 4KB)</li>
-      <li>Avoid sensitive data (e.g., passwords)</li>
-      <li>Use <code>jti</code> + revocation list</li>
-      <li>Validate <code>iss</code> and <code>aud</code> server-side</li>
-    </ul>
-
-    <h2>How the Viewer Helps</h2>
-    <p>Paste any JWT → instantly see:</p>
-    <ul>
-      <li>All claims in pretty-printed JSON</li>
-      <li>Timestamps in UTC</li>
-      <li>Expiration status</li>
-      <li>Copy-ready output</li>
-    </ul>
-
-    <h2>FAQ</h2>
-    <details>
-      <summary>Should I trust <code>sub</code> for authorization?</summary>
-      <p>No. Always verify identity server-side using signature and <code>iss</code>.</p>
-    </details>
-    <details>
-      <summary>Can <code>aud</code> be multiple values?</summary>
-      <p>Yes. Use an array. Your API must check membership.</p>
-    </details>
-    <details>
-      <summary>What if <code>exp</code> is missing?</summary>
-      <p>Token never expires — a security risk. Always set it.</p>
-    </details>
-
-    <p class="italic-note">Know your claims. Secure your tokens.</p>
+    <p class="italic-note">Fast, private, transparent — that’s what modern JWT debugging should be.</p>
   </article>
 </div>

@@ -4,19 +4,19 @@ import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 const config = {
   preprocess: vitePreprocess(),
   kit: {
-	adapter: adapter({
-	  pages: 'docs',
-	  assets: 'docs',
-	  fallback: '404.html',
-	  precompress: false
-	}),
-	paths: {
-	  base: '/jwt-viewer'
-	},
-	prerender: {
-	  entries: ['*'],
-	  handleHttpError: 'warn'
-	}
+    adapter: adapter({
+      pages: 'docs',
+      assets: 'docs',
+      fallback: '404.html',
+      precompress: false
+    }),
+    paths: {
+      base: '/jwt-viewer'
+    },
+    prerender: {
+      entries: ['*'],
+      handleHttpError: 'warn'
+    }
   }
 };
 

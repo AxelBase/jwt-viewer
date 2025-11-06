@@ -10,18 +10,38 @@
     { href: '/blog/posts/post6', title: 'Raw vs. Decoded Views: Customizing Your Inspection', description: 'Tips on toggling between Base64Url raw strings and pretty-printed JSON.' },
     { href: '/blog/posts/post7', title: 'Integrating JWT Viewer into Development Workflows', description: 'Best practices for using the tool in debugging auth flows and API testing.' },
   ];
+
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "AxelBase JWT Blog",
+    "url": "https://axelbase.github.io/jwt-viewer/blog/",
+    "description": "Insights, tutorials, and updates on the AxelBase JWT Header & Payload Viewer.",
+    "publisher": {
+      "@type": "Organization",
+      "name": "AxelBase",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://axelbase.github.io/jwt-viewer/AxelLab-Logo.ico"
+      }
+    }
+  };
 </script>
 
 <svelte:head>
-  <title>Blog | AxelBase JWT Insights</title>
-  <meta name="description" content="Insights, tutorials, and updates on the AxelBase JWT Header & Payload Viewer." />
+  <title>JWT Blog | Tutorials & Insights | AxelBase</title>
+  <meta name="description" content="Explore tutorials, updates, and best practices for the AxelBase JWT Header & Payload Viewer." />
+  <link rel="canonical" href="https://axelbase.github.io/jwt-viewer/blog/" />
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large" />
+  <script type="application/ld+json">{JSON.stringify(pageSchema)}</script>
 </svelte:head>
 
 <div class="container fade-in blog-index">
   <header class="blog-header">
     <h1><i class="bi bi-journal-richtext"></i> Blog: AxelBase JWT Insights</h1>
     <p class="subtitle">
-      Explore tutorials, updates, and best practices for the JWT Header & Payload Viewer. Check out our <a href="https://github.com/axelbase/jwt-viewer" target="_blank" rel="noopener noreferrer">GitHub repository</a> for source code and contributions.
+      Explore tutorials, updates, and best practices for the JWT Header & Payload Viewer. Check out our
+      <a href="https://github.com/axelbase/jwt-viewer" target="_blank" rel="noopener noreferrer">GitHub repository</a>.
     </p>
   </header>
 

@@ -9,7 +9,6 @@
 
   // Fill the variables with the JSON you want to copy
   $: if (browser) {
-    // Example – replace with your real header/payload objects
     copyHeader = JSON.stringify({ alg: 'HS256', typ: 'JWT' }, null, 2);
     copyPayload = JSON.stringify({ sub: '123', name: 'John' }, null, 2);
   }
@@ -27,8 +26,8 @@
     }
   };
   // -------------------------------------------
-
 </script>
+
 <svelte:head>
   <title>What is the JWT Header & Payload Viewer? | AxelBase Blog</title>
   <meta name="description" content="A privacy-first, client-side tool to decode and inspect JWT header and payload without sending data to any server." />

@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="theme-color" content="#0d6efd" />
+
     <title>AxelBase – JWT Header & Payload Viewer</title>
     <link rel="icon" href="../../AxelLab-Logo.ico" />
 
@@ -16,31 +19,30 @@
 
     
 		<link href="../../_app/immutable/assets/0.5x_xSm61.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../_app/immutable/entry/start.CY8SU0tX.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Cx1Us-46.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Y_y87twW.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BGA5TNFn.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CkRaryMP.js">
-		<link rel="modulepreload" href="../../_app/immutable/entry/app.B4lHzDYK.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BXXJdfyG.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CQKq4XYX.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CrzrGUbh.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/0.CfXuiURD.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/DOGrH6OB.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CD7uLGPR.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/uOPJYegi.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BF4hkOU8.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Jp5pbPk0.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/8.DkL5S68H.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BUKLBh0t.js"><!--12qhfyh--><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script><!----><!--1li990r--><meta name="description" content="Learn how the viewer converts exp, iat, nbf to readable UTC dates and warns about expired tokens."/> <meta property="og:title" content="Handling JWT Expiration and Timestamps | AxelBase Blog"/> <meta property="og:description" content="Learn how the viewer converts exp, iat, nbf to readable UTC dates and warns about expired tokens."/> <meta property="og:url" content="../../blog/posts/post5"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>Handling JWT Expiration and Timestamps | AxelBase Blog</title>
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.BbKpkIo-.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/ChxBWd9W.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/5PdmOsKK.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/iQz03bY6.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/pBA0a1Lq.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.BYr8vxK9.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CzK_bswD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DKlPZc4F.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BKjikVp1.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.PBrkf2dx.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Cdz7LPPN.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/vYUN2wj5.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/w2h87oVe.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/kzdWQNaX.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/8.DsbtLdYt.js"><!--12qhfyh--><link rel="canonical" href="https://axelbase.github.io../.."/> <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>  <meta name="description" content="Free client-side JWT Header &amp; Payload Viewer. Decode JSON Web Tokens safely in your browser with zero data sent to servers."/> <script type="application/ld+json">
+    {JSON.stringify(organizationSchema)}
+  </script><!----><!--1li990r--><meta name="description" content="Learn how JWT expiration works, how to handle expired tokens, and best practices for secure token management in client-side applications."/> <meta property="og:title" content="Understanding JWT Expiration and Security | AxelBase Blog"/> <meta property="og:description" content="Learn how JWT expiration works, how to handle expired tokens, and best practices for secure token management in client-side applications."/> <meta property="og:url" content="../../blog/posts/post5"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/> <link rel="canonical" href="https://axelbase.github.io/jwt-viewer/blog/posts/post5.html"/><!----><title>Understanding JWT Expiration and Security | AxelBase Blog</title>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div><!--[--><!--[--><!----><div class="app-container svelte-12qhfyh"><header class="sticky-nav svelte-12qhfyh"><div class="navbar-container svelte-12qhfyh"><div class="navbar-left svelte-12qhfyh"><a href="../../" class="navbar-logo svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="AxelBase Logo" class="svelte-12qhfyh"/> <span class="navbar-brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-wrapper svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z"></path></svg> <span>Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <nav class="navbar-right svelte-12qhfyh"><ul class="svelte-12qhfyh"><li><a href="../../" class="svelte-12qhfyh">Home</a></li> <li><a href="../../#about" class="svelte-12qhfyh">About</a></li> <li><a href="../../#how-to-use" class="svelte-12qhfyh">How to use</a></li> <li><a href="../../#faq" class="svelte-12qhfyh">FAQ</a></li> <li><a href="../../blog" class="svelte-12qhfyh">Blog</a></li></ul></nav></div></header> <main class="main-content svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout"><div class="breadcrumbs"><a href="../../blog">Blog</a> <span>/</span> <p>JWT Expiration &amp; Timestamps</p></div> <article class="prose"><h1>Handling JWT Expiration and Timestamps</h1> <p class="post-meta">Published: November 9, 2025</p> <p>Time-based claims like <code>exp</code>, <code>iat</code>, and <code>nbf</code> are the backbone of JWT security.
-      Misconfigured timestamps lead to 401 errors, infinite sessions, or premature access. The <strong>JWT Header &amp; Payload Viewer</strong> makes these Unix timestamps human-readable — instantly.</p> <h2>Understanding the Claims</h2> <h3><code>exp</code> – Expiration</h3> <p>After this Unix timestamp, the token is invalid. Example: <code>1736299200</code> → <strong>01 Dec 2025 00:00:00 UTC</strong></p> <h3><code>iat</code> – Issued At</h3> <p>When the token was created. Helps detect clock skew.</p> <h3><code>nbf</code> – Not Before</h3> <p>Token is rejected before this time. Useful for scheduled access.</p> <h2>How the Viewer Helps</h2> <p>Paste a JWT → see:</p> <ul><li><strong>Formatted UTC Dates</strong>: <code>05 Nov 2025 14:30:22 UTC</code></li> <li><strong>Live Validity Check</strong>: Green “Valid” or red “Expired” badge</li> <li><strong>Issued/Not Before</strong>: Full context in summary</li></ul> <h3>Real-World Example</h3> <p>Token with <code>exp: 1736299200</code> → Viewer shows:</p> <pre><code>Expires: 01 Dec 2025 00:00:00 UTC (Valid)</code></pre> <h2>Common Issues &amp; Fixes</h2> <table style="width:100%; border-collapse: collapse; margin: 1.5rem 0;"><thead><tr><th style="text-align:left; border-bottom:2px solid var(--accent-primary); padding:0.5rem;">Issue</th><th style="text-align:left; border-bottom:2px solid var(--accent-primary); padding:0.5rem;">Fix</th></tr></thead><tbody><tr><td style="padding:0.5rem;">Token expired but still accepted</td><td style="padding:0.5rem;">Enforce <code>exp</code> server-side</td></tr><tr><td style="padding:0.5rem;">Clock skew causes rejection</td><td style="padding:0.5rem;">Allow ±5 min leeway</td></tr><tr><td style="padding:0.5rem;">No <code>exp</code> set</td><td style="padding:0.5rem;">Always set expiration (e.g., 1 hour)</td></tr></tbody></table> <h2>Best Practices</h2> <ul><li>Set short-lived access tokens (15–60 mins)</li> <li>Use refresh tokens for long sessions</li> <li>Include <code>iat</code> to prevent replay</li> <li>Test with the viewer before deploy</li></ul> <h2>FAQ</h2> <details><summary>What if <code>exp</code> is in milliseconds?</summary> <p>JWT spec uses seconds. If you see large numbers (e.g., 1736299200000), divide by 1000.</p></details> <details><summary>Can I extend expiration client-side?</summary> <p>No. Only the issuer can issue new tokens.</p></details> <details><summary>Should I include time zone?</summary> <p>No. JWT uses Unix time (UTC). Always convert locally.</p></details> <p class="italic-note">Control time. Control security.</p></article></div><!----><!--]--></main> <footer class="sticky-footer svelte-12qhfyh"><span>© 2025 AxelBase JWT Viewer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy Policy</a> <a href="../../terms" class="svelte-12qhfyh">Terms and Conditions</a></div></footer></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+    <div><!--[--><!--[--><!----><div class="app-container svelte-12qhfyh"><header class="sticky-nav svelte-12qhfyh"><div class="navbar-container svelte-12qhfyh"><div class="navbar-left svelte-12qhfyh"><a href="../../" class="navbar-logo svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="AxelBase Logo" class="svelte-12qhfyh"/> <span class="navbar-brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-wrapper svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z"></path></svg> <span>Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <nav class="navbar-right svelte-12qhfyh"><ul class="svelte-12qhfyh"><li><a href="../../" class="svelte-12qhfyh">Home</a></li> <li><a href="../../#about" class="svelte-12qhfyh">About</a></li> <li><a href="../../#how-to-use" class="svelte-12qhfyh">How to use</a></li> <li><a href="../../#faq" class="svelte-12qhfyh">FAQ</a></li> <li><a href="../../blog" class="svelte-12qhfyh">Blog</a></li></ul></nav></div></header> <main class="main-content svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout"><div class="breadcrumbs"><a href="../../">Home</a> <span>/</span> <a href="../../blog">Blog</a> <span>/</span> <p>Understanding JWT Expiration and Security</p></div> <article class="prose"><h1>Understanding JWT Expiration and Security</h1> <p class="post-meta">Published: November 6, 2025</p> <p>JSON Web Tokens (JWTs) are widely used for stateless authentication. However, understanding <strong>token expiration</strong> and implementing proper security practices is crucial for keeping applications safe.</p> <h2>1. How JWT Expiration Works</h2> <p>JWTs typically contain an <code>exp</code> (expiration) claim specifying the timestamp when the token becomes invalid. Once expired, any requests using the token should be rejected by the server.</p> <h2>2. Handling Expired Tokens</h2> <p>Client-side applications should detect expired tokens and request a new one via refresh tokens or re-authentication. Never ignore expired JWTs — this can lead to unauthorized access.</p> <h2>3. Security Best Practices</h2> <ul><li>Set reasonable expiration times based on sensitivity.</li> <li>Use HTTPS to prevent interception.</li> <li>Do not store tokens in localStorage if XSS is a concern; consider in-memory storage.</li> <li>Always validate token expiration server-side.</li></ul> <h2>4. Summary</h2> <p>JWT expiration is a simple but critical part of token security. Proper handling ensures your app remains secure without compromising user experience.</p></article></div><!----><!--]--></main> <footer class="sticky-footer svelte-12qhfyh"><span>© 2025 AxelBase JWT Viewer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy Policy</a> <a href="../../terms" class="svelte-12qhfyh">Terms and Conditions</a></div></footer></div><!----><!--]--> <!--[!--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1l68tha = {
+					__sveltekit_kzrpoy = {
 						base: new URL("../..", location).pathname.slice(0, -1),
 						assets: "/jwt-viewer"
 					};
@@ -48,8 +50,8 @@
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../../_app/immutable/entry/start.CY8SU0tX.js"),
-						import("../../_app/immutable/entry/app.B4lHzDYK.js")
+						import("../../_app/immutable/entry/start.BbKpkIo-.js"),
+						import("../../_app/immutable/entry/app.BYr8vxK9.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 8],

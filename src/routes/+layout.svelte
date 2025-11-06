@@ -3,53 +3,56 @@
   import { fly } from 'svelte/transition';
   import '../app.css';
 
+  // === SEO Structured Data (Organization) ===
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "AxelBase",
+    "url": "https://axelbase.github.io/jwt-viewer/",
+    "logo": "https://axelbase.github.io/jwt-viewer/AxelLab-Logo.ico",
+    "sameAs": [
+      "https://github.com/axelbase",
+      "https://x.com/axelbase"
+    ]
+  };
+
   // === State for "Buy me a coffee" ===
-  const paypalUsername = 'YOUR_USERNAME'; // <-- IMPORTANT: Set your PayPal username
+  const paypalUsername = 'AxelLab427'; // <-- Set your PayPal username
   const donationAmounts = [1, 3, 5, 10];
   let isDropdownOpen = false;
+  function toggleDropdown() { isDropdownOpen = !isDropdownOpen; }
+  function closeDropdown() { isDropdownOpen = false; }
 
-  function toggleDropdown() {
-    isDropdownOpen = !isDropdownOpen;
-  }
-  function closeDropdown() {
-    isDropdownOpen = false;
-  }
-
-  // === State for Footer ===
+  // === Footer State ===
   const currentYear = new Date().getFullYear();
 
   // === Click Outside Directive ===
-  // (From your example, for closing the dropdown)
   function clickOutside(node: HTMLElement) {
     const handleClick = (event: MouseEvent) => {
       if (node && !node.contains(event.target as Node)) {
-        // Dispatch a custom event
         node.dispatchEvent(new CustomEvent('click_outside'));
       }
     };
     document.addEventListener('click', handleClick, true);
-    return {
-      destroy() {
-        document.removeEventListener('click', handleClick, true);
-      }
-    };
+    return { destroy() { document.removeEventListener('click', handleClick, true); } };
   }
 </script>
 
 <svelte:head>
-  <link
-    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-    rel="stylesheet"
-    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
-    crossorigin="anonymous"
-  />
+  <!-- Canonical Base -->
+  <link rel="canonical" href="https://axelbase.github.io{base}" />
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"
-    defer
-  ></script>
+  <!-- Robots Meta -->
+  <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+
+  <!-- Default Title & Description Fallback -->
+  <title>AxelBase JWT Viewer | Decode JWT Header & Payload Instantly</title>
+  <meta name="description" content="Free client-side JWT Header & Payload Viewer. Decode JSON Web Tokens safely in your browser with zero data sent to servers." />
+
+  <!-- Structured Data (Organization Schema) -->
+  <script type="application/ld+json">
+    {JSON.stringify(organizationSchema)}
+  </script>
 </svelte:head>
 
 <div class="app-container">
@@ -61,6 +64,7 @@
           <span class="navbar-brand-text">AxelBase</span>
         </a>
 
+        <!-- Buy Me a Coffee Dropdown -->
         <div class="bmac-wrapper" use:clickOutside on:click_outside={closeDropdown}>
           <button class="bmac-button" on:click={toggleDropdown}>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -114,20 +118,17 @@
 </div>
 
 <style>
-  /* === Main Layout === */
   .app-container {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
   }
   .main-content {
-    flex: 1; /* Ensures main content takes up available space */
-    /* Add padding to prevent content from hiding under sticky header/footer */
-    padding-top: 70px; /* Adjust based on your final nav height */
-    padding-bottom: 70px; /* Adjust based on your final footer height */
+    flex: 1;
+    padding-top: 70px;
+    padding-bottom: 70px;
   }
 
-  /* === Sticky Header === */
   .sticky-nav {
     position: sticky;
     top: 0;
@@ -147,7 +148,6 @@
     margin: 0 auto;
   }
 
-  /* === Header Left Side === */
   .navbar-left {
     display: flex;
     align-items: center;
@@ -165,7 +165,7 @@
     transition: transform 0.4s ease-in-out;
   }
   .navbar-logo:hover img {
-    transform: rotate(360deg); /* Animation */
+    transform: rotate(360deg);
   }
   .navbar-brand-text {
     color: var(--text-primary);
@@ -178,7 +178,6 @@
     color: var(--primary-color);
   }
 
-  /* === Header Right Side (Nav) === */
   .navbar-right ul {
     list-style: none;
     display: flex;
@@ -194,7 +193,6 @@
     padding-bottom: 5px;
     transition: color 0.3s ease;
   }
-  /* Underline hover effect */
   .navbar-right a::after {
     content: '';
     position: absolute;
@@ -210,10 +208,9 @@
     color: var(--text-primary);
   }
   .navbar-right a:hover::after {
-    width: 100%; /* Animation */
+    width: 100%;
   }
 
-  /* === Buy Me a Coffee Button === */
   .bmac-wrapper {
     position: relative;
   }
@@ -237,12 +234,12 @@
   }
   .bmac-button:hover {
     background-color: var(--primary-hover);
-    transform: scale(1.05); /* Hover effect */
+    transform: scale(1.05);
     box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
   }
   .bmac-dropdown {
     position: absolute;
-    top: 125%; /* Position below button */
+    top: 125%;
     left: 0;
     background-color: var(--bg-surface);
     border: 1px solid var(--border-color);
@@ -268,7 +265,6 @@
     color: white;
   }
 
-  /* === Sticky Footer === */
   .sticky-footer {
     position: relative;
     bottom: 0;

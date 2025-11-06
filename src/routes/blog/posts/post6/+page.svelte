@@ -1,126 +1,52 @@
 <script lang="ts">
   import { base } from '$app/paths';
-  import { onMount } from 'svelte';
-  import { browser } from '$lib/browser';
-
-  // ---------- ONLY THIS PART CHANGES ----------
-  let copyHeader = '';
-  let copyPayload = '';
-
-  // Fill the variables with the JSON you want to copy
-  $: if (browser) {
-    // Example – replace with your real header/payload objects
-    copyHeader = JSON.stringify({ alg: 'HS256', typ: 'JWT' }, null, 2);
-    copyPayload = JSON.stringify({ sub: '123', name: 'John' }, null, 2);
-  }
-
-  let copyBtnText = 'Copy';
-
-  const copyToClipboard = async (text: string, which: 'header' | 'payload') => {
-    if (!browser) return;
-    try {
-      await navigator.clipboard.writeText(text);
-      copyBtnText = which === 'header' ? 'Header copied!' : 'Payload copied!';
-      setTimeout(() => (copyBtnText = 'Copy'), 1500);
-    } catch {
-      alert('Copy failed – use Ctrl+C');
-    }
-  };
-  // -------------------------------------------
-
 </script>
+
 <svelte:head>
-  <title>Raw vs. Decoded Views: Customizing Your JWT Inspection | AxelBase Blog</title>
-  <meta
-    name="description"
-    content="Learn how to toggle between pretty-printed JSON and raw Base64Url strings for advanced JWT analysis."
-  />
-  <meta property="og:title" content="Raw vs. Decoded Views: Customizing Your JWT Inspection | AxelBase Blog" />
-  <meta
-    property="og:description"
-    content="Learn how to toggle between pretty-printed JSON and raw Base64Url strings for advanced JWT analysis."
-  />
+  <title>Safe Client-Side JWT Decoding | AxelBase Blog</title>
+  <meta name="description" content="Discover how to safely decode JWTs entirely on the client-side without sending data to servers, maintaining privacy and security." />
+  <meta property="og:title" content="Safe Client-Side JWT Decoding | AxelBase Blog" />
+  <meta property="og:description" content="Discover how to safely decode JWTs entirely on the client-side without sending data to servers, maintaining privacy and security." />
   <meta property="og:url" content={`${base}/blog/posts/post6`} />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://axelbase.github.io/jwt-viewer/blog/posts/post6.html" />
 </svelte:head>
 
 <div class="container fade-in post-layout">
   <div class="breadcrumbs">
+    <a href={`${base}/`}>Home</a>
+    <span>/</span>
     <a href={`${base}/blog`}>Blog</a>
     <span>/</span>
-    <p>Raw vs. Decoded Views</p>
+    <p>Safe Client-Side JWT Decoding</p>
   </div>
 
   <article class="prose">
-    <h1>Raw vs. Decoded Views: Customizing Your JWT Inspection</h1>
-    <p class="post-meta">Published: November 10, 2025</p>
+    <h1>Safe Client-Side JWT Decoding</h1>
+    <p class="post-meta">Published: November 6, 2025</p>
 
-    <p>
-      Sometimes you need the full picture. The <strong>JWT Header & Payload Viewer</strong> lets you toggle between
-      <strong>pretty-printed JSON</strong> and <strong>raw Base64Url strings</strong> — giving you flexibility for debugging,
-      teaching, or reverse-engineering.
-    </p>
+    <p>Decoding JWTs in the browser can be safe and private if done correctly. The key principle is that <strong>your tokens never leave your device</strong>.</p>
 
-    <h2>Pretty-Printed JSON (Default)</h2>
-    <p>Ideal for:</p>
+    <h2>1. Why Client-Side Decoding Matters</h2>
+    <p>Many online JWT tools send tokens to servers for processing, introducing privacy risks. By decoding entirely in-browser, you avoid exposing sensitive claims or secrets.</p>
+
+    <h2>2. Tools and Techniques</h2>
     <ul>
-      <li>Reading claims quickly</li>
-      <li>Copying structured data</li>
-      <li>Sharing with team members</li>
+      <li>Use <code>atob()</code> or <code>base64url</code> decoding in JavaScript.</li>
+      <li>Parse JSON with <code>JSON.parse()</code> safely using try/catch.</li>
+      <li>Toggle between raw and pretty-printed JSON for readability.</li>
     </ul>
 
-    <pre><code>{`{
-  "sub": "123",
-  "name": "Alice",
-  "exp": 1736299200
-}`}</code></pre>
-
-    <h2>Raw Base64Url (Toggle On)</h2>
-    <p>Shows the exact encoded string before decoding. Useful for:</p>
+    <h2>3. Security Considerations</h2>
+    <p>Even client-side decoding must be cautious:</p>
     <ul>
-      <li>Verifying encoding manually</li>
-      <li>Teaching Base64Url rules</li>
-      <li>Comparing with logs or APIs</li>
+      <li>Avoid pasting production secrets in shared devices or public terminals.</li>
+      <li>Use HTTPS pages and modern browsers to reduce attack surface.</li>
+      <li>Do not rely on the viewer for signature validation — decoding is read-only.</li>
     </ul>
-    <pre><code>eyJzdWIiOiIxMjMiLCJuYW1lIjoiQWxpY2UiLCJleHAiOjE3MzYyOTkyMDB9</code></pre>
 
-    <h3>How to Toggle</h3>
-    <p>Check the box: <strong>“Show Raw Base64Url”</strong> → both tabs update instantly.</p>
-
-    <h2>Advanced Use Cases</h2>
-
-    <h3>1. Debugging Encoding Issues</h3>
-    <p>Copy raw segment → paste into online Base64Url decoder → compare output.</p>
-
-    <h3>2. Teaching JWT Internals</h3>
-    <p>Show students:</p>
-    <ol>
-      <li>Raw → <code>eyJhbGciOi...</code></li>
-      <li>Decode → <code>{`{"alg": "HS256"}`}</code></li>
-      <li>Explain padding, <code>-</code> → <code>+</code>, <code>_</code> → <code>/</code></li>
-    </ol>
-
-    <h3>3. API Contract Validation</h3>
-    <p>Compare raw payload from frontend vs. backend logs to catch serialization bugs.</p>
-
-    <h2>Copy Options</h2>
-    <p>With toggle on, “Copy” button exports the <strong>raw string</strong>. Off → exports <strong>JSON</strong>.</p>
-
-    <h2>FAQ</h2>
-    <details>
-      <summary>Why is padding (<code>=</code>) sometimes missing?</summary>
-      <p>Base64Url omits padding. The viewer adds it internally before <code>atob()</code>.</p>
-    </details>
-    <details>
-      <summary>Can I edit raw and re-encode?</summary>
-      <p>Not in-app. Use external tools or code.</p>
-    </details>
-    <details>
-      <summary>Is raw view safe?</summary>
-      <p>Yes. Still 100% client-side. No data sent.</p>
-    </details>
-
-    <p class="italic-note">See it your way — raw or refined.</p>
+    <h2>4. Conclusion</h2>
+    <p>With careful implementation, client-side JWT decoding offers a secure, fast, and private way to inspect tokens without relying on external servers.</p>
   </article>
 </div>

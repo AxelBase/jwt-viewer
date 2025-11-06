@@ -3,6 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1" />
+    <meta name="theme-color" content="#0d6efd" />
+
     <title>AxelBase – JWT Header & Payload Viewer</title>
     <link rel="icon" href="../../AxelLab-Logo.ico" />
 
@@ -16,32 +19,30 @@
 
     
 		<link href="../../_app/immutable/assets/0.5x_xSm61.css" rel="stylesheet">
-		<link rel="modulepreload" href="../../_app/immutable/entry/start.CY8SU0tX.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Cx1Us-46.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Y_y87twW.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BGA5TNFn.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CkRaryMP.js">
-		<link rel="modulepreload" href="../../_app/immutable/entry/app.B4lHzDYK.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BXXJdfyG.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CQKq4XYX.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CrzrGUbh.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/0.CfXuiURD.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/DOGrH6OB.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/CD7uLGPR.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/uOPJYegi.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BF4hkOU8.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/Jp5pbPk0.js">
-		<link rel="modulepreload" href="../../_app/immutable/nodes/10.v-Im35iU.js">
-		<link rel="modulepreload" href="../../_app/immutable/chunks/BUKLBh0t.js"><!--12qhfyh--><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"/> <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script><!----><!--jo8es1--><meta name="description" content="Best practices for using the JWT viewer in daily dev, testing, onboarding, and security audits."/> <meta property="og:title" content="Integrating JWT Viewer into Development Workflows | AxelBase Blog"/> <meta property="og:description" content="Best practices for using the JWT viewer in daily dev, testing, onboarding, and security audits."/> <meta property="og:url" content="../../blog/posts/post7"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>Integrating JWT Viewer into Development Workflows | AxelBase Blog</title>
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.BbKpkIo-.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/ChxBWd9W.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/5PdmOsKK.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/iQz03bY6.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/pBA0a1Lq.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.BYr8vxK9.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CzK_bswD.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DKlPZc4F.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BKjikVp1.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.PBrkf2dx.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Cdz7LPPN.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/vYUN2wj5.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/w2h87oVe.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/kzdWQNaX.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/10.8FLUAylp.js"><!--12qhfyh--><link rel="canonical" href="https://axelbase.github.io../.."/> <meta name="robots" content="index,follow,max-snippet:-1,max-image-preview:large,max-video-preview:-1"/>  <meta name="description" content="Free client-side JWT Header &amp; Payload Viewer. Decode JSON Web Tokens safely in your browser with zero data sent to servers."/> <script type="application/ld+json">
+    {JSON.stringify(organizationSchema)}
+  </script><!----><!--jo8es1--><meta name="description" content="Learn practical tips for inspecting JWT payloads, understanding claims, timestamps, and ensuring data privacy during debugging."/> <meta property="og:title" content="Tips for Inspecting JWT Payloads | AxelBase Blog"/> <meta property="og:description" content="Learn practical tips for inspecting JWT payloads, understanding claims, timestamps, and ensuring data privacy during debugging."/> <meta property="og:url" content="../../blog/posts/post7"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/> <link rel="canonical" href="https://axelbase.github.io/jwt-viewer/blog/posts/post7.html"/><!----><title>Tips for Inspecting JWT Payloads | AxelBase Blog</title>
   </head>
   <body data-sveltekit-preload-data="hover">
-    <div><!--[--><!--[--><!----><div class="app-container svelte-12qhfyh"><header class="sticky-nav svelte-12qhfyh"><div class="navbar-container svelte-12qhfyh"><div class="navbar-left svelte-12qhfyh"><a href="../../" class="navbar-logo svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="AxelBase Logo" class="svelte-12qhfyh"/> <span class="navbar-brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-wrapper svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z"></path></svg> <span>Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <nav class="navbar-right svelte-12qhfyh"><ul class="svelte-12qhfyh"><li><a href="../../" class="svelte-12qhfyh">Home</a></li> <li><a href="../../#about" class="svelte-12qhfyh">About</a></li> <li><a href="../../#how-to-use" class="svelte-12qhfyh">How to use</a></li> <li><a href="../../#faq" class="svelte-12qhfyh">FAQ</a></li> <li><a href="../../blog" class="svelte-12qhfyh">Blog</a></li></ul></nav></div></header> <main class="main-content svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout"><div class="breadcrumbs"><a href="../../blog">Blog</a> <span>/</span> <p>JWT Viewer in Workflows</p></div> <article class="prose"><h1>Integrating JWT Viewer into Development Workflows</h1> <p class="post-meta">Published: November 11, 2025</p> <p>The <strong>JWT Header &amp; Payload Viewer</strong> isn’t just a tool — it’s a workflow enhancer. From daily debugging to team training, here’s how to embed it into your development lifecycle.</p> <h2>1. Daily Development</h2> <p>Paste tokens from browser dev tools → verify claims before writing code.</p> <ul><li>Check <code>scope</code> matches API expectations</li> <li>Confirm <code>exp</code> isn’t too short</li> <li>Copy <code>sub</code> for test users</li></ul> <h2>2. Testing &amp; QA</h2> <p>Include in test scripts:</p> <pre><code># Example: Validate token in CI
-curl -H "Authorization: Bearer $TOKEN" API_URL
-# → Paste response token into viewer</code></pre> <h2>3. Onboarding New Developers</h2> <p>Pair with auth docs:</p> <ol><li>Log in to dev environment</li> <li>Open viewer</li> <li>Explain each claim live</li></ol> <h2>4. Security Audits</h2> <p>Use raw view to:</p> <ul><li>Verify no PII in payload</li> <li>Check <code>iat</code> vs. login time</li> <li>Export for compliance reports</li></ul> <h2>5. Incident Response</h2> <p>Token compromise? Paste into viewer → check <code>jti</code>, <code>iss</code>, <code>exp</code> → revoke if needed.</p> <h2>Pro Tips</h2> <ul><li><strong>PWA Install</strong>: Add to home screen for 1-click access</li> <li><strong>Share Links</strong>: <code>?token=eyJ...</code> (not recommended for prod)</li> <li><strong>Dark Mode</strong>: Add CSS toggle in future</li></ul> <h2>FAQ</h2> <details><summary>Can I embed it in my app?</summary> <p>Yes! Clone the repo and host internally.</p></details> <details><summary>Should I log viewer usage?</summary> <p>No. Keep it zero-log for privacy.</p></details> <details><summary>Works with refresh tokens?</summary> <p>Yes — any JWT format.</p></details> <p class="italic-note">Make JWT debugging a habit. Ship faster. Stay secure.</p></article></div><!----><!--]--></main> <footer class="sticky-footer svelte-12qhfyh"><span>© 2025 AxelBase JWT Viewer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy Policy</a> <a href="../../terms" class="svelte-12qhfyh">Terms and Conditions</a></div></footer></div><!----><!--]--> <!--[!--><!--]--><!--]-->
+    <div><!--[--><!--[--><!----><div class="app-container svelte-12qhfyh"><header class="sticky-nav svelte-12qhfyh"><div class="navbar-container svelte-12qhfyh"><div class="navbar-left svelte-12qhfyh"><a href="../../" class="navbar-logo svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="AxelBase Logo" class="svelte-12qhfyh"/> <span class="navbar-brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-wrapper svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="svelte-12qhfyh"><path d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z"></path></svg> <span>Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <nav class="navbar-right svelte-12qhfyh"><ul class="svelte-12qhfyh"><li><a href="../../" class="svelte-12qhfyh">Home</a></li> <li><a href="../../#about" class="svelte-12qhfyh">About</a></li> <li><a href="../../#how-to-use" class="svelte-12qhfyh">How to use</a></li> <li><a href="../../#faq" class="svelte-12qhfyh">FAQ</a></li> <li><a href="../../blog" class="svelte-12qhfyh">Blog</a></li></ul></nav></div></header> <main class="main-content svelte-12qhfyh"><!--[--><!----><div class="container fade-in post-layout"><div class="breadcrumbs"><a href="../../">Home</a> <span>/</span> <a href="../../blog">Blog</a> <span>/</span> <p>Tips for Inspecting JWT Payloads</p></div> <article class="prose"><h1>Tips for Inspecting JWT Payloads</h1> <p class="post-meta">Published: November 6, 2025</p> <p>Inspecting JWT payloads is an essential skill for developers, security engineers, and educators. Properly understanding claims and timestamps ensures accurate debugging and secure practices.</p> <h2>1. Understand Standard Claims</h2> <ul><li><strong>sub:</strong> Subject or user ID.</li> <li><strong>iss:</strong> Issuer of the token.</li> <li><strong>aud:</strong> Intended audience.</li> <li><strong>exp:</strong> Expiration time.</li> <li><strong>iat:</strong> Issued at timestamp.</li> <li><strong>nbf:</strong> Not before timestamp.</li></ul> <h2>2. Use Human-Readable Timestamps</h2> <p>Convert UNIX timestamps to UTC dates for easier interpretation. This helps identify expired tokens or tokens not yet valid.</p> <h2>3. Explore Custom Claims</h2> <p>Custom claims, like <code>role</code> or <code>tenant_id</code>, often carry application-specific data. Always inspect these carefully to understand access permissions.</p> <h2>4. Privacy Tips</h2> <ul><li>Never expose production tokens in public tools or shared devices.</li> <li>Clear tokens from memory after inspection.</li> <li>Use local client-side viewers to ensure zero server exposure.</li></ul> <h2>5. Final Thoughts</h2> <p>By following these best practices, developers can confidently decode, inspect, and debug JWTs while maintaining full privacy and security.</p></article></div><!----><!--]--></main> <footer class="sticky-footer svelte-12qhfyh"><span>© 2025 AxelBase JWT Viewer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy Policy</a> <a href="../../terms" class="svelte-12qhfyh">Terms and Conditions</a></div></footer></div><!----><!--]--> <!--[!--><!--]--><!--]-->
 			
 			<script>
 				{
-					__sveltekit_1l68tha = {
+					__sveltekit_kzrpoy = {
 						base: new URL("../..", location).pathname.slice(0, -1),
 						assets: "/jwt-viewer"
 					};
@@ -49,8 +50,8 @@ curl -H "Authorization: Bearer $TOKEN" API_URL
 					const element = document.currentScript.parentElement;
 
 					Promise.all([
-						import("../../_app/immutable/entry/start.CY8SU0tX.js"),
-						import("../../_app/immutable/entry/app.B4lHzDYK.js")
+						import("../../_app/immutable/entry/start.BbKpkIo-.js"),
+						import("../../_app/immutable/entry/app.BYr8vxK9.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 10],

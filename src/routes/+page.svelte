@@ -12,9 +12,8 @@
   let rawPayload: string = '';
   let showRaw: boolean = false;
 
-  // Reactive decoding — NO `return` allowed!
+  // Reactive decoding
   $: {
-    // Reset
     error = '';
     header = null;
     payload = null;
@@ -22,10 +21,7 @@
     rawPayload = '';
 
     const trimmed = jwt.trim();
-    if (!trimmed) {
-      // Early exit — no return!
-      // Just do nothing
-    } else {
+    if (trimmed) {
       const parts = trimmed.split('.');
       if (parts.length !== 3 || parts.some(p => !p)) {
         error = 'Invalid JWT: Must have exactly 3 non-empty parts separated by dots.';
@@ -50,14 +46,9 @@
   }
 
   function copy(text: string) {
-    navigator.clipboard
-      .writeText(text)
+    navigator.clipboard.writeText(text)
       .then(() => {
-        alert(
-          `${showRaw ? 'Raw ' : ''}${
-            activeTab === 'header' ? 'Header' : 'Payload'
-          } copied!`
-        );
+        alert(`${showRaw ? 'Raw ' : ''}${activeTab === 'header' ? 'Header' : 'Payload'} copied!`);
       })
       .catch(() => {
         alert('Copy failed. Please select and copy manually.');
@@ -68,6 +59,44 @@
     jwt = '';
   }
 </script>
+
+<svelte:head>
+  <title>JWT Header & Payload Viewer | AxelBase</title>
+  <meta name="description" content="Decode JWT headers and payloads locally in your browser. 100% client-side, no tracking, no logs. Free open-source tool." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://axelbase.github.io/jwt-viewer/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="JWT Header & Payload Viewer | AxelBase" />
+  <meta property="og:description" content="Decode JWT headers and payloads locally in your browser. 100% client-side, no tracking, no logs." />
+  <meta property="og:url" content="https://axelbase.github.io/jwt-viewer/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://axelbase.github.io/jwt-viewer/assets/og-image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="JWT Header & Payload Viewer | AxelBase" />
+  <meta name="twitter:description" content="Decode JWT headers and payloads locally in your browser. 100% client-side, no tracking, no logs." />
+  <meta name="twitter:image" content="https://axelbase.github.io/jwt-viewer/assets/og-image.png" />
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "JWT Header & Payload Viewer",
+      "url": "https://axelbase.github.io/jwt-viewer/",
+      "applicationCategory": "DeveloperTool",
+      "operatingSystem": "Web",
+      "description": "Decode JWT headers and payloads locally in your browser. 100% client-side, no tracking, no logs.",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+  </script>
+</svelte:head>
 
 <div class="container py-4">
   <h1 class="h3 mb-4">JWT Header & Payload Viewer</h1>
@@ -84,58 +113,36 @@
   {#if error}
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
       {error}
-      <button
-        type="button"
-        class="btn-close"
-        data-bs-dismiss="alert"
-        aria-label="Close"
-      ></button>
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
   {/if}
 
   {#if header && payload}
     <div class="card mb-3">
       <div class="card-body">
-        <strong>Algorithm:</strong>
-        {header.alg || 'none'} |
-        <strong>Type:</strong>
-        {header.typ || 'JWT'}
+        <strong>Algorithm:</strong> {header.alg || 'none'} |
+        <strong>Type:</strong> {header.typ || 'JWT'}
         {#if payload.exp}
-          | <strong>Expires:</strong>
-          {formatTimestamp(payload.exp)}
-          <span
-            class="badge ms-2 {Date.now() / 1000 > payload.exp ? 'bg-danger' : 'bg-success'}"
-          >
-            {Date.now() / 1000 > payload.exp ? 'Expired' : 'Valid'}
+          | <strong>Expires:</strong> {formatTimestamp(payload.exp)}
+          <span class="badge ms-2 {Date.now()/1000 > payload.exp ? 'bg-danger' : 'bg-success'}">
+            {Date.now()/1000 > payload.exp ? 'Expired' : 'Valid'}
           </span>
         {/if}
         {#if payload.iat}
-          | <strong>Issued:</strong>
-          {formatTimestamp(payload.iat)}
+          | <strong>Issued:</strong> {formatTimestamp(payload.iat)}
         {/if}
         {#if payload.nbf}
-          | <strong>Not Before:</strong>
-          {formatTimestamp(payload.nbf)}
+          | <strong>Not Before:</strong> {formatTimestamp(payload.nbf)}
         {/if}
       </div>
     </div>
 
     <ul class="nav nav-tabs mb-3">
       <li class="nav-item">
-        <button
-          class="nav-link {activeTab === 'header' ? 'active' : ''}"
-          on:click={() => (activeTab = 'header')}
-        >
-          Header
-        </button>
+        <button class="nav-link {activeTab === 'header' ? 'active' : ''}" on:click={() => (activeTab = 'header')}>Header</button>
       </li>
       <li class="nav-item">
-        <button
-          class="nav-link {activeTab === 'payload' ? 'active' : ''}"
-          on:click={() => (activeTab = 'payload')}
-        >
-          Payload
-        </button>
+        <button class="nav-link {activeTab === 'payload' ? 'active' : ''}" on:click={() => (activeTab = 'payload')}>Payload</button>
       </li>
     </ul>
 
@@ -152,17 +159,9 @@
       {/if}
       <button
         class="btn btn-sm btn-outline-primary"
-        on:click={() =>
-          copy(
-            showRaw
-              ? activeTab === 'header'
-                ? rawHeader
-                : rawPayload
-              : JSON.stringify(activeTab === 'header' ? header : payload, null, 2)
-          )}
+        on:click={() => copy(showRaw ? (activeTab === 'header' ? rawHeader : rawPayload) : JSON.stringify(activeTab === 'header' ? header : payload, null, 2))}
       >
-        Copy {showRaw ? 'Raw' : 'JSON'}
-        {activeTab === 'header' ? 'Header' : 'Payload'}
+        Copy {showRaw ? 'Raw' : 'JSON'} {activeTab === 'header' ? 'Header' : 'Payload'}
       </button>
     </div>
   {/if}

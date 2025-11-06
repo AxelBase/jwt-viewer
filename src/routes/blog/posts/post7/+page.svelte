@@ -1,111 +1,57 @@
 <script lang="ts">
   import { base } from '$app/paths';
-  import { onMount } from 'svelte';
-  import { browser } from '$lib/browser';
-
-  // ---------- ONLY THIS PART CHANGES ----------
-  let copyHeader = '';
-  let copyPayload = '';
-
-  // Fill the variables with the JSON you want to copy
-  $: if (browser) {
-    // Example – replace with your real header/payload objects
-    copyHeader = JSON.stringify({ alg: 'HS256', typ: 'JWT' }, null, 2);
-    copyPayload = JSON.stringify({ sub: '123', name: 'John' }, null, 2);
-  }
-
-  let copyBtnText = 'Copy';
-
-  const copyToClipboard = async (text: string, which: 'header' | 'payload') => {
-    if (!browser) return;
-    try {
-      await navigator.clipboard.writeText(text);
-      copyBtnText = which === 'header' ? 'Header copied!' : 'Payload copied!';
-      setTimeout(() => (copyBtnText = 'Copy'), 1500);
-    } catch {
-      alert('Copy failed – use Ctrl+C');
-    }
-  };
-  // -------------------------------------------
-
 </script>
+
 <svelte:head>
-  <title>Integrating JWT Viewer into Development Workflows | AxelBase Blog</title>
-  <meta name="description" content="Best practices for using the JWT viewer in daily dev, testing, onboarding, and security audits." />
-  <meta property="og:title" content="Integrating JWT Viewer into Development Workflows | AxelBase Blog" />
-  <meta property="og:description" content="Best practices for using the JWT viewer in daily dev, testing, onboarding, and security audits." />
-  <meta property="og:url" content="{base}/blog/posts/post7" />
+  <title>Tips for Inspecting JWT Payloads | AxelBase Blog</title>
+  <meta name="description" content="Learn practical tips for inspecting JWT payloads, understanding claims, timestamps, and ensuring data privacy during debugging." />
+  <meta property="og:title" content="Tips for Inspecting JWT Payloads | AxelBase Blog" />
+  <meta property="og:description" content="Learn practical tips for inspecting JWT payloads, understanding claims, timestamps, and ensuring data privacy during debugging." />
+  <meta property="og:url" content={`${base}/blog/posts/post7`} />
   <meta property="og:type" content="article" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://axelbase.github.io/jwt-viewer/blog/posts/post7.html" />
 </svelte:head>
 
 <div class="container fade-in post-layout">
   <div class="breadcrumbs">
-    <a href="{base}/blog">Blog</a>
+    <a href={`${base}/`}>Home</a>
     <span>/</span>
-    <p>JWT Viewer in Workflows</p>
+    <a href={`${base}/blog`}>Blog</a>
+    <span>/</span>
+    <p>Tips for Inspecting JWT Payloads</p>
   </div>
 
   <article class="prose">
-    <h1>Integrating JWT Viewer into Development Workflows</h1>
-    <p class="post-meta">Published: November 11, 2025</p>
+    <h1>Tips for Inspecting JWT Payloads</h1>
+    <p class="post-meta">Published: November 6, 2025</p>
 
-    <p>The <strong>JWT Header & Payload Viewer</strong> isn’t just a tool — it’s a workflow enhancer. From daily debugging to team training, here’s how to embed it into your development lifecycle.</p>
+    <p>Inspecting JWT payloads is an essential skill for developers, security engineers, and educators. Properly understanding claims and timestamps ensures accurate debugging and secure practices.</p>
 
-    <h2>1. Daily Development</h2>
-    <p>Paste tokens from browser dev tools → verify claims before writing code.</p>
+    <h2>1. Understand Standard Claims</h2>
     <ul>
-      <li>Check <code>scope</code> matches API expectations</li>
-      <li>Confirm <code>exp</code> isn’t too short</li>
-      <li>Copy <code>sub</code> for test users</li>
+      <li><strong>sub:</strong> Subject or user ID.</li>
+      <li><strong>iss:</strong> Issuer of the token.</li>
+      <li><strong>aud:</strong> Intended audience.</li>
+      <li><strong>exp:</strong> Expiration time.</li>
+      <li><strong>iat:</strong> Issued at timestamp.</li>
+      <li><strong>nbf:</strong> Not before timestamp.</li>
     </ul>
 
-    <h2>2. Testing & QA</h2>
-    <p>Include in test scripts:</p>
-    <pre><code># Example: Validate token in CI
-curl -H "Authorization: Bearer $TOKEN" API_URL
-# → Paste response token into viewer</code></pre>
+    <h2>2. Use Human-Readable Timestamps</h2>
+    <p>Convert UNIX timestamps to UTC dates for easier interpretation. This helps identify expired tokens or tokens not yet valid.</p>
 
-    <h2>3. Onboarding New Developers</h2>
-    <p>Pair with auth docs:</p>
-    <ol>
-      <li>Log in to dev environment</li>
-      <li>Open viewer</li>
-      <li>Explain each claim live</li>
-    </ol>
+    <h2>3. Explore Custom Claims</h2>
+    <p>Custom claims, like <code>role</code> or <code>tenant_id</code>, often carry application-specific data. Always inspect these carefully to understand access permissions.</p>
 
-    <h2>4. Security Audits</h2>
-    <p>Use raw view to:</p>
+    <h2>4. Privacy Tips</h2>
     <ul>
-      <li>Verify no PII in payload</li>
-      <li>Check <code>iat</code> vs. login time</li>
-      <li>Export for compliance reports</li>
+      <li>Never expose production tokens in public tools or shared devices.</li>
+      <li>Clear tokens from memory after inspection.</li>
+      <li>Use local client-side viewers to ensure zero server exposure.</li>
     </ul>
 
-    <h2>5. Incident Response</h2>
-    <p>Token compromise? Paste into viewer → check <code>jti</code>, <code>iss</code>, <code>exp</code> → revoke if needed.</p>
-
-    <h2>Pro Tips</h2>
-    <ul>
-      <li><strong>PWA Install</strong>: Add to home screen for 1-click access</li>
-      <li><strong>Share Links</strong>: <code>?token=eyJ...</code> (not recommended for prod)</li>
-      <li><strong>Dark Mode</strong>: Add CSS toggle in future</li>
-    </ul>
-
-    <h2>FAQ</h2>
-    <details>
-      <summary>Can I embed it in my app?</summary>
-      <p>Yes! Clone the repo and host internally.</p>
-    </details>
-    <details>
-      <summary>Should I log viewer usage?</summary>
-      <p>No. Keep it zero-log for privacy.</p>
-    </details>
-    <details>
-      <summary>Works with refresh tokens?</summary>
-      <p>Yes — any JWT format.</p>
-    </details>
-
-    <p class="italic-note">Make JWT debugging a habit. Ship faster. Stay secure.</p>
+    <h2>5. Final Thoughts</h2>
+    <p>By following these best practices, developers can confidently decode, inspect, and debug JWTs while maintaining full privacy and security.</p>
   </article>
 </div>
