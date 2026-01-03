@@ -17,8 +17,6 @@
   };
 
   // === State for "Buy me a coffee" ===
-  const paypalUsername = 'AxelLab427'; // <-- Set your PayPal username
-  const donationAmounts = [1, 3, 5, 10];
   let isDropdownOpen = false;
   function toggleDropdown() { isDropdownOpen = !isDropdownOpen; }
   function closeDropdown() { isDropdownOpen = false; }
@@ -64,29 +62,43 @@
           <span class="navbar-brand-text">AxelBase</span>
         </a>
 
-        <!-- Buy Me a Coffee Dropdown -->
+        <!-- Buy Me a Coffee Dropdown (from File 1) -->
         <div class="bmac-wrapper" use:clickOutside on:click_outside={closeDropdown}>
-          <button class="bmac-button" on:click={toggleDropdown}>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M12.35,22.2L12,22A10,10,0,0,1,2,12V10A2,2,0,0,1,4,8H7.2A5.13,5.13,0,0,1,12,3A5.13,5.13,0,0,1,16.8,8H20A2,2,0,0,1,22,10V12A10,10,0,0,1,12.35,22.2M4,10V12A8,8,0,0,0,12,20A8,8,0,0,0,20,12V10H16.8A5.11,5.11,0,0,1,12.5,5.12A5.15,5.15,0,0,1,7.2,10H4Z"
-              />
+          <button
+            class="bmac-button d-flex align-items-center gap-2 text-white border-0 px-4 py-2 rounded-pill shadow-sm"
+            on:click={toggleDropdown}
+            aria-label="Support options"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M2,21V19H20V21H2M20,8V5H4V8H20M20,10H4V13C4,14.38 4.5,15.63 5.31,16.58L11.64,19H12.36L18.69,16.58C19.5,15.63 20,14.38 20,13V10M16,2H8V4H16V2Z" />
             </svg>
-            <span>Buy me a coffee</span>
+            <span class="d-none d-sm-inline fw-semibold">Buy me a Coffee</span>
+            <span class="d-sm-none fw-semibold">Coffee</span>
           </button>
 
           {#if isDropdownOpen}
-            <div class="bmac-dropdown" transition:fly={{ y: -10, duration: 250 }}>
-              {#each donationAmounts as amount}
-                <a
-                  href="https://paypal.me/{paypalUsername}/{amount}"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  on:click={closeDropdown}
-                >
-                  ${amount}
-                </a>
-              {/each}
+            <div class="bmac-dropdown mt-2" transition:fly={{ y: -10, duration: 250 }}>
+              <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+                <span class="amount">$3</span> One Coffee
+              </a>
+              <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+                <span class="amount">$5</span> Two Coffees
+              </a>
+              <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown}>
+                <span class="amount">$10</span> Three Coffees
+              </a>
+
+              <a href="https://buymeacoffee.com/axelbase" target="_blank" rel="noopener" on:click={closeDropdown} class="custom-amount">
+                Custom Amount
+              </a>
+
+              <a
+                href="bitcoin:bc1q3p0e6vt492m4w4fpz5m2cl4zcfuqqkgaj6myc9?label=AxelBase&message=Buy%20me%20a%20coffee"
+                on:click={closeDropdown}
+                class="custom-amount"
+              >
+                Buy via Crypto (Bitcoin)
+              </a>
             </div>
           {/if}
         </div>
@@ -211,57 +223,66 @@
     width: 100%;
   }
 
+  /* === Buy Me a Coffee Button & Dropdown - Styles from File 1, adapted to File 2 theme === */
   .bmac-wrapper {
     position: relative;
   }
+
   .bmac-button {
-    background-color: var(--primary-color);
-    color: white;
-    border: none;
-    border-radius: 5px;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    font-weight: 500;
+    background: var(--primary-color);
+    font-size: 0.95rem;
     transition: all 0.3s ease;
   }
-  .bmac-button svg {
-    width: 20px;
-    height: 20px;
-    fill: white;
-  }
   .bmac-button:hover {
-    background-color: var(--primary-hover);
-    transform: scale(1.05);
-    box-shadow: 0 4px 10px rgba(220, 53, 69, 0.3);
+    background: var(--primary-hover);
+    transform: translateY(-1px);
   }
+
   .bmac-dropdown {
     position: absolute;
-    top: 125%;
-    left: 0;
-    background-color: var(--bg-surface);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: 0.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 240px;
+    margin-top: 0.5rem;
+    background: var(--bg-surface);
+    border-radius: 16px;
+    box-shadow: 0 12px 32px rgba(220, 53, 69, 0.25);
+    overflow: hidden;
+    border: 1px solid rgba(220, 53, 69, 0.2);
     z-index: 1001;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-    min-width: 100px;
   }
+
   .bmac-dropdown a {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 20px;
     color: var(--text-primary);
-    padding: 0.5rem 1rem;
-    border-radius: 3px;
     text-decoration: none;
-    text-align: center;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.98rem;
+    transition: all 0.2s ease;
   }
+
   .bmac-dropdown a:hover {
-    background-color: var(--primary-color);
+    background: var(--primary-color);
+    color: white;
+    padding-left: 28px;
+  }
+
+  .bmac-dropdown .amount {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+  }
+
+  .bmac-dropdown .custom-amount {
+    font-weight: 600;
+    color: var(--primary-color);
+    border-top: 1px solid var(--border-color);
+    justify-content: center !important;
+  }
+  .bmac-dropdown .custom-amount:hover {
     color: white;
   }
 
