@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://axelbase.github.io/jwt-viewer/sitemap.xml
+Sitemap: https://jwt-viewer.vercel.app/sitemap.xml
